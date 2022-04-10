@@ -1,9 +1,14 @@
 // Employee parent class //
 
-test('')
+const Employee = require("../lib/Employee");
 
-// Clicking on Employee will prompt from team manager, engineer, or intern //
+test("can start Employee instance", () => {
+    const employee = new Employee();
+    expect(typeof(employee).toBe("object"));
+});
 
-// each employee will have name, id, email, Github username, and taken back to menu after //
-
-// when done building team, HTML is generated //
+test("can set name via constructor arguments", () => {
+    const name = "John";
+    const employee = new Employee(name);
+    expect(employee.name).toBe(name);
+});
