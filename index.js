@@ -99,16 +99,16 @@ function addIntern() {
 
     ])
 
-    .then(function(data) {
-        const name = data.internName
-        const email = data.internEmail
-        const school = data.internSchool
+    .then(function (data) {
+        const name = data.name
+        const id = generatedTeamArray.length + 1
+        const email = data.email
+        const school = data.school
         const teamMember = new Intern(name, id, email, school)
-        generateTeamArray.push(teamMember)
-        
+        generatedTeamMember.push(teamMember)
         addTeamMembers()
-    });
-};
+    })
+ };
 
 function addTeamMembers() {
     inquirer.prompt([
