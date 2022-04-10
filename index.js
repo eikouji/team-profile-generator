@@ -9,7 +9,79 @@ const Intern = require("./lib/intern");
 let generatedTeamArray = [];
 
 
+function nameMyTeam() {
+    inquirer.prompt([
+        {
+        message: "Please enter your team Name:",
+        name: "The Octogons";
+        }
+    ])
+    .then(function(data){
+        const myTeamName = data.myTeamName
+        generatedTeamArray.push(myTeamName)
+        addManager();
+    })
+}
 
+// add people to the team //
+// Manager //
+function addManager() {
+    inquirer.prompt([
+        {
+            message: "What is your team manager's name?",
+            name: "managerName"
+        },
+        {
+            message: "What is your team manager's email address?",
+            name: "managerEmail"
+        },
+        {
+            message: "What is your team manager's office number?",
+            name: "managerOfficeNumber"
+        },
+    ])
+
+    .then(function(data) {
+        const name = data.managerName
+        const id = 1
+        const email = data.managerEmail
+        const officeNumber = data.managerOfficeNumber
+        const teamMember = new Manager(name, id, email, officeNumber)
+
+        generatedTeamArray.push(teamMember)
+        addTeamMembers();
+    });
+}
+
+function addTeamMembers() {
+    inquirer.prompt([
+        {
+            type: "list",
+            message: "would you like to add more members to your team?",
+            choices: ["Yes, add an engineer", "Yes, add an intern", "Yes, add a team manager", "No, my team is complete."],
+            name: "addTeamMemberData"
+        }
+    ])
+
+    .then(function(data) {
+        
+        switch (data.addTeamMemberData) {
+            case "Yes, add an engineer":
+              addEngineer();
+              break;
+
+            case "Yes, add an intern":
+              addIntern();
+              break;
+            
+            case "Yes, add a team manager":
+              addTeamManager();
+
+            case "No, my team is complete":
+                createTeam();
+        }    
+    })
+}
 
 
 
