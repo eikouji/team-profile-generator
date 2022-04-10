@@ -162,7 +162,66 @@ function createTeam() {
       <body>
         <div class="container-fluid">
          <div class="jumbotron text-center" style="background-color:#dc3545">
-           <h1 style="color:white;">$
-    
+           <h1 style="color:white;">$[generatedTeamArray[0]}</h1>
+        </div
+
+        <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
     `
+    htmlArray.push(htmlBeginning);
+
+    for (let i = 1; i < generateTeamArray.length; i++) {
+        let object = `
+        <div class="col">
+      <div class="card mb-3 mt-3">
+        <div class="card-body">
+          <div class="card-header bg-primary text-white" style="font-size: 20px;">${generateTeamArray[i].name}
+            <p><i class="${generateTeamArray[i].icon}"></i> ${generateTeamArray[i].title}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+          <li class="list-group-item">ID:${generateTeamArray[i].id}</li>
+          <li class="list-group-item">Email :<a href="mailto:${generateTeamArray[i].email}">${generateTeamArray[i].email}</a></li>
+              
+        `
+        if (generateTeamArray[i].officeNumber) {
+            object += `
+            <li class="list-group-item">OfficeNumber:${generatedTeamArray[i].officeNumber}</li>`
+        }
+        if (generateTeamArray[i].github)
+           object += `
+           <li class="list-group-item">GitHub: <a href="https://github.com/${generatedTeamArray[i].github}</a></li>
+           `
+    }
+    if (generatedTeamArray[i].school {
+        object += `
+        <li class="list-group-item">School: ${generateTeamArray[i].schoolName}</li>
+        `
+    }
+    }
+
+    object += `
+    </ul>
+    </div>
+    </div>
+    </div>
+
+     `
+
+     htmlArray.push(object)
+  }
+
+const htmlEnd = `
+  </div>
+  </div>
+  </body>
+  </html>
+`
+
+htmlArray.push(htmlEnd);
+
+  fs.writeFile(`./dist/${generatedTeamArray[0]}.html`, htmlArray.join(""), function (err) {
+
+  })
 }
+
+nameMyTeam();
