@@ -1,5 +1,7 @@
 const Manager = require("../lib/Manager");
 
+// test Manager's name: Tristan. email: test@email.com. office number: 100 //
+
 test("can set office number by constructor argument", () => {
     const managerOfficeNumber = 100;
     const employee = new Manager("Tristan", 1, "test@email.com", managerOfficeNumber);
