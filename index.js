@@ -4,7 +4,7 @@ const fs = require("fs");
 const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
 const Manager = require("./lib/Manager");
-const Intern = require("./lib/intern");
+const Intern = require("./lib/Intern");
 
 let generatedTeamArray = [];
 
@@ -13,7 +13,7 @@ function nameMyTeam() {
     inquirer.prompt([
         {
         message: "Please enter your team Name:",
-        name: "The Octogons";
+        name: "myTeamName"
         }
     ])
     .then(function(data){
@@ -24,6 +24,7 @@ function nameMyTeam() {
 }
 
 // add people to the team //
+
 // Manager //
 function addManager() {
     inquirer.prompt([
@@ -52,6 +53,62 @@ function addManager() {
         addTeamMembers();
     });
 }
+
+function addEngineer() {
+    inquirer.prompt([
+        {
+            message: "What is this engineer's name?",
+            name: "engineerName"
+        },
+        {
+           message: "What is this engineer's email address?",
+           name: "engineerEmail"
+        },
+        {
+            message: "what is this engineer's GitHub profile?",
+            name: "engineerGitHub"
+
+        }
+    ])
+
+    .then(function(data) {
+        const name = data.name
+        const id = generatedTeamArray.length + 1
+        const email = data.engineerEmail
+        const gitHub = data.engineerGitHub
+        const teamMember = new Engineer(name, id, email, github)
+        generatedTeamArray.push(teamMember)
+        addTeamMembers()
+    });
+};
+
+function addIntern() {
+    inquirer(prompt([
+        {
+            message: "What is this intern's name?",
+            name: "internName"
+        },
+        {
+            message: "What is this intern's email address?",
+            name: "internEmail"
+        },
+        {
+            message: "Where did this intern go to school?",
+            name: "internSchool"
+        }
+
+    ])
+
+    .then(function(data) {
+        const name = data.internName
+        const email = data.internEmail
+        const school = data.internSchool
+        const teamMember = new Intern(name, id, email, school)
+        generateTeamArray.push(teamMember)
+        
+        addTeamMembers()
+    });
+};
 
 function addTeamMembers() {
     inquirer.prompt([
